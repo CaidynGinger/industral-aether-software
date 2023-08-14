@@ -1,0 +1,45 @@
+<!-- <p>object details</p>
+<p>object locations</p>
+<p>object total amount</p>
+<p>object recipes</p>
+
+<div ngClass="badge-btn">
+  <app-btn
+    ngClass="btn"
+    (btnClick)="deleteInventoryObjectHandler()"
+    text="New Inventory Object"
+    [isDisabled]="true"
+  />
+</div> -->
+
+<form ngClass="form-container" [formGroup]="editObjectFormGroup">
+  <h2>{{selectedObject.objectTitle}} Object</h2>
+  <div ngClass="form-group">
+    <input
+      type="text"
+      required="required"
+      placeholder="Object Name"
+      [formControlName]="'objectTitle'"
+    />
+    <label ngClass="control-label" for="input">Object Name</label>
+    <i ngClass="bar"></i>
+    <!-- <i ngClass="input-error"></i> -->
+  </div>
+  <div ngClass="form-group">
+    <input
+      type="text"
+      required="required"
+      placeholder="Object Storage Unit"
+      [formControlName]="'unit'"
+    />
+    <label ngClass="control-label" for="input">Object Storage Unit</label>
+    <i ngClass="bar"></i>
+    <!-- <i ngClass="input-error"></i> -->
+  </div>
+  <br />
+  <app-btn
+    (btnClick)="onSubmit()"
+    text="Update Inventory Object"
+    [isDisabled]="false"
+  />
+</form>
