@@ -1,0 +1,23 @@
+.app-container{
+    width: 100%;
+    min-height: 100vh;
+    background-image: linear-gradient( 
+        to right,
+        rgba(0, 0, 0, 0.2), 
+        rgba(0, 0, 0, 0.5) 
+      ), url(../../assets/images/gabriel-bjork-stiernstrom-isaacasimov-ciclodellefondazioni-coverbygabrielbjorkstiernstrom.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.primary-content{
+    margin-left: 250px;
+    color: white;
+}
+
+.router-outlet{
+    // margin: 40px;
+    padding: 40px;
+}

@@ -1,0 +1,68 @@
+<!-- https://malcoded.com/posts/angular-ngclass/ -->
+<div
+  [class.modal-background]="true"
+  [class.modal-background-show]="modalShow"
+  (click)="closeFormHandler()"
+></div>
+<div ngClass="form-container" [class.form-container-show]="modalShow">
+  <app-add-sector></app-add-sector>
+</div>
+<div ngClass="container">
+  <div ngClass="top-header">
+    <div>
+      <p>search Sector</p>
+      <!-- <input type="text" /> -->
+    </div>
+    <p>total sectors: {{ sectorList.length }}</p>
+    <p>total jobs active: 5</p>
+    <!-- total jobs active: {{jobs.length}} -->
+    <div ngClass="new-sector-btn">
+      <app-btn
+        (btnClick)="addSectorHandler()"
+        text="Add New Sector"
+        [isDisabled]="false"
+      ></app-btn>
+    </div>
+  </div>
+  <table ngClass="sector-table">
+    <tr>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Employees</th>
+      <th>Status</th>
+      <th>Current Jobs</th>
+      <th></th>
+    </tr>
+    <tbody>
+      <ng-template ngFor let-sector [ngForOf]="sectorList">
+        <tr (click)="routeHandler(sector._id)">
+          <td>
+            <p>{{ sector.title }}</p>
+          </td>
+          <td>
+            <p>
+              ({{ sector.locationX }},{{ sector.locationY }},{{
+                sector.locationZ
+              }})
+            </p>
+          </td>
+          <td>
+            <p>{{ sector.employees.length }}</p>
+          </td>
+          <td>
+            <p *ngIf="sector.status">Active</p>
+            <p *ngIf="!sector.status">Discontinued</p>
+          </td>
+          <td>
+            <p>{{ sector.currentJobs.length }}</p>
+          </td>
+          <td>
+            <a ngClass="manage-btn" [routerLink]="['/sector', sector._id]"
+              >Manage Sector</a
+            >
+          </td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

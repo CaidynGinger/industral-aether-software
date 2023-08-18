@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+$primary: #7851a9;
+$secondary: #663399;
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Red Hat Display', sans-serif;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

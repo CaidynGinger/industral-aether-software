@@ -1,0 +1,51 @@
+<div [class.modal-background]="true" [class.modal-background-show]="modalShow" (click)="closeFormHandler()"></div>
+<div ngClass="form-container" [class.form-container-show]="showForm">
+   <app-add-object></app-add-object>
+</div>
+
+<div ngClass="form-container" [class.object-container-show]="showObject">
+  <app-object (closeFormHandler)="refreshObjectList()"  [selectedObject]="selectedObject"></app-object>
+</div>
+
+<div ngClass="sector-table-container">
+  <table ngClass="sector-table" >
+    <tr>
+      <th>Inventory object</th>
+      <!-- <th>description</th> -->
+      <th>Units</th>
+      <th>Amount</th>
+      <!-- <th>Total Units</th> -->
+      <!-- <th></th>
+          <th>Due</th>
+          <th>Status</th>
+          <th>Completed Date</th> -->
+      <!-- <th>Note</th> -->
+    </tr>
+    <tbody>
+      <ng-template ngFor let-object [ngForOf]="inventoryObjectsList">
+        <tr (click)="onEditItem(object)">
+          <td>
+            <p>{{ toCapitalize(object.objectTitle) }}</p>
+          </td>
+          <td>
+            <p>{{ object.unit }}</p>
+          </td>
+          <td>
+            <p>
+              {{ object.amount }} {{ object.unit
+              }}{{ pluralChecker(object.amount) }}
+            </p>
+          </td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+  <div ngClass="badge-btn">
+    <app-btn
+      ngClass="btn"
+      (btnClick)="addInventoryObjectHandler()"
+      text="New Inventory Object"
+      [isDisabled]="false"
+    />
+  </div>
+</div>

@@ -1,0 +1,86 @@
+<div
+  [class.modal-background]="true"
+  [class.modal-background-show]="modalShow"
+  (click)="closeFormHandler()"
+></div>
+<div ngClass="form-container" [class.form-container-show]="modalShow">
+  <app-create-job></app-create-job>
+</div>
+
+<div ngClass="main-nav-container">
+  <nav ngClass="main-nav">
+    <h4>Kol 67 storage</h4>
+    <h3>(34,56,31)</h3>
+    <app-btn
+      ngClass="btn"
+      (btnClick)="createJob()"
+      text="Create Job"
+      [isDisabled]="false"
+    />
+  </nav>
+</div>
+<div ngClass="job-container">
+  <div ngClass="content-container">
+    <p>search job</p>
+
+    <table ngClass="sector-table">
+      <tr>
+        <th>Job Title</th>
+        <th>Job Type</th>
+        <!-- <th>Issuer</th> -->
+        <th>For</th>
+        <th>Created</th>
+        <th>Due</th>
+        <th>Status</th>
+        <th>Completed Date</th>
+        <!-- <th>Note</th> -->
+        <th></th>
+      </tr>
+      <tbody>
+        <ng-template ngFor let-job [ngForOf]="jobList">
+          <tr>
+            <td>
+              <p>{{ job.jobName }}</p>
+            </td>
+            <td>
+              <p>{{ job.jobName }}</p>
+            </td>
+            <!-- <td>
+              <p>{{ job.issuer }}</p>
+            </td> -->
+            <td>
+              <p>{{ job.for }}</p>
+            </td>
+            <td>
+              <p>{{ job.created }}</p>
+            </td>
+            <td>
+              <p>{{ job.due }}</p>
+            </td>
+            <td>
+              <p>{{ job.status }}</p>
+            </td>
+            <td>
+              <p>{{ job.complectedDate }}</p>
+            </td>
+            <td>
+              <a ngClass="manage-btn" routerLink="inventory-sectors"
+                >Manage Job</a
+              >
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+    <!-- <div>Jobs</div>
+    
+      <div>Employee list</div>
+    
+      inventory brake down
+    
+      <p>sector details</p>
+      <p>Sector jobs</p>
+      <p>Sector workers</p>
+      <p>sector Inventory</p> -->
+  </div>
+</div>

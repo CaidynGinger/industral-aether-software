@@ -1,0 +1,70 @@
+@import "../../styles.scss";
+
+.side-nav {
+  width: 250px;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  // box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  animation: neon2 2s ease-in-out infinite alternate;
+  z-index: 10;
+
+  nav{
+    a{
+      color: white;
+      text-decoration: none;
+      display: block;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      font-weight: 200;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+      &:hover{
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+    }
+
+  }
+}
+
+.top-content {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  img {
+    border-radius: 50%;
+  }
+  h3 {
+    margin: 10px 0;
+    font-size: 1.5rem;
+    font-weight: 200;
+  }
+  hr{
+    width: 80%;
+    margin-bottom: 20px;
+  }
+}
+
+.bottom-content{
+  margin-top: auto;
+}
+
+// https://codepen.io/FelixRilling/pen/oNNLMb
+
+@keyframes neon2 {
+  from {
+    box-shadow: 0 0 2px #fff, 0 0 6px #fff, 0 0 10px #fff, 0 0 14px $secondary,
+      0 0 20px $secondary, 0 0 30px $secondary, 0 0 40px $secondary, 0 0 50px $secondary;
+  }
+  to {
+    box-shadow: 0 0 1px #fff, 0 0 3px #fff, 0 0 5px #fff, 0 0 7px $primary,
+      0 0 10px $primary, 0 0 15px $primary, 0 0 20px $primary, 0 0 25px $primary;
+  }
+}

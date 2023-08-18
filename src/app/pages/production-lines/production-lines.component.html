@@ -1,0 +1,69 @@
+<div
+  [class.modal-background]="true"
+  [class.modal-background-show]="modalShow"
+  (click)="closeFormHandler()"
+></div>
+<div ngClass="form-container" [class.form-container-show]="showAddProductionLine">
+    <app-add-production-line></app-add-production-line>
+</div>
+
+<div ngClass="form-container" [class.form-container-show]="showProductionLine">
+  <app-production-line (closeFormHandler)="refreshProductionLineList()"  [selectedProductionLine]="selectedProductionLine"></app-production-line>
+</div>
+
+<div>
+  <table ngClass="sector-table">
+    <tr>
+      <th>Recipe</th>
+      <th>Input Recourses</th>
+      <th>Input Amounts</th>
+      <th>Output Recourses</th>
+      <th>Output Amounts</th>
+    </tr>
+    <tbody>
+      <ng-template ngFor let-line [ngForOf]="productionLineList">
+        <tr (click)="onEditItem(line)">
+          <td>
+            <p>{{ toCapitalize(line.productionLineTitle) }}</p>
+          </td>
+          <td>
+            <ng-template ngFor let-input [ngForOf]="line.productionLineInputs">
+              <p>{{ input.objectTitle }}</p>
+            </ng-template>
+          </td>
+          <td>
+            <ng-template ngFor let-input [ngForOf]="line.productionLineInputs">
+              <p>
+                {{ input.amount }} {{ input.unit
+                }}{{ pluralChecker(input.amount) }}
+              </p>
+            </ng-template>
+          </td>
+          <td>
+            <ng-template ngFor let-output [ngForOf]="line.productionLineOutputs">
+              <p>
+                {{ output.objectTitle }}
+              </p>
+            </ng-template>
+          </td>
+          <td>
+            <ng-template ngFor let-output [ngForOf]="line.productionLineOutputs">
+              <p>
+                {{ output.amount }} {{ output.unit
+                }}{{ pluralChecker(output.amount) }}
+              </p>
+            </ng-template>
+          </td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+  <div ngClass="badge-btn">
+      <app-btn
+        ngClass="btn"
+        (btnClick)="addProductionLineHandler()"
+        text="New Production Line"
+        [isDisabled]="false"
+      />
+    </div>
+</div>

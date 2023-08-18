@@ -1,0 +1,108 @@
+<form ngClass="form-container" [formGroup]="addProductionLineFormGroup">
+    <h2>Add New Production Line</h2>
+    <div ngClass="form-group">
+      <input
+        type="text"
+        required="required"
+        placeholder="Production Line Name"
+        [formControlName]="'productionLineTitle'"
+      />
+      <label ngClass="control-label" for="input">Production Line Name</label>
+      <i ngClass="bar"></i>
+      <!-- <i ngClass="input-error"></i> -->
+    </div>
+    <h3>Inputs</h3>
+    <form [formGroup]="addInputFormGroup">
+        <div ngClass="form-group">
+            <input
+              type="text"
+              required="required"
+              placeholder="Search Object Form Input"
+              [formControlName]="'inputTitle'"
+              (click)="inputDropDownActive()"
+              (keyup)="onSearchObjectList()"
+              (blur)="dropDownNonActive()"
+            />
+            <label ngClass="control-label" for="input">Search Object Form Input</label>
+            <i ngClass="bar"></i>
+            <!-- <i ngClass="input-error"></i> -->
+          </div>
+          <div *ngIf="inputShowObjectDropdown" ngClass="dropdown-list">
+            <ng-template ngFor let-objectItem [ngForOf]="inventoryObjectsList">
+                <p (click)="SelectObjectInputsHandler(objectItem._id)" ngClass="object-list-item">{{objectItem.objectTitle}}</p>
+            </ng-template>
+          </div>
+    </form>
+    <h3>Added Inputs</h3>
+    <ng-template  ngFor let-objectItem [ngForOf]="addProductionLineFormGroup.controls.productionLineInputs.value" >
+        <div ngClass="added-objects-group">
+            <p>{{objectItem.objectTitle}}</p>
+            <div ngClass="form-group">
+                <input
+                type="text"
+                required="required"
+                placeholder="{{objectItem.unit}} required"
+                (keyup)="updateProductionLineAmountInput($event, objectItem._id)"
+              />
+              <label ngClass="control-label" for="input">{{objectItem.unit}}s required</label>
+              <i ngClass="bar"></i>
+            </div>
+           
+            <app-btn
+            ngClass="remove-btn"
+            (btnClick)="removeObject(objectItem._id)"
+            text="X"
+            [isDisabled]="false"
+          />
+        </div>
+    </ng-template>
+    <h3>Outputs</h3>
+    <form [formGroup]="addOutputFormGroup">
+        <div ngClass="form-group">
+            <input
+              type="text"
+              required="required"
+              placeholder="Search Object Form Input"
+              [formControlName]="'outputTitle'"
+              (click)="outputDropDownActive()"
+              (keyup)="onSearchObjectListOutput()"
+              (blur)="dropDownNonActive()"
+            />
+            <label ngClass="control-label" for="input">Search Object Form Input</label>
+            <i ngClass="bar"></i>
+          </div>
+          <div *ngIf="outputShowObjectDropdown" ngClass="dropdown-list">
+            <ng-template ngFor let-objectItem [ngForOf]="inventoryObjectsList">
+                <p (click)="SelectObjectOutputsHandler(objectItem._id)" ngClass="object-list-item">{{objectItem.objectTitle}}</p>
+            </ng-template>
+          </div>
+    </form>
+    <ng-template  ngFor let-objectItem [ngForOf]="addProductionLineFormGroup.controls.productionLineOutputs.value" >
+        <div ngClass="added-objects-group">
+            <p>{{objectItem.objectTitle}}</p>
+            <div ngClass="form-group">
+                <input
+                type="text"
+                required="required"
+                placeholder="{{objectItem.unit}} required"
+                (keyup)="updateProductionLineAmountOutput($event, objectItem._id)"
+              />
+              <label ngClass="control-label" for="input">{{objectItem.unit}}s required</label>
+              <i ngClass="bar"></i>
+            </div>
+           
+            <app-btn
+            ngClass="remove-btn"
+            (btnClick)="removeObjectOutputs(objectItem._id)"
+            text="X"
+            [isDisabled]="false"
+          />
+        </div>
+    </ng-template>
+    <br />
+    <app-btn
+      (btnClick)="onSubmit()"
+      text="Add New Production Line"
+      [isDisabled]="false"
+    />
+  </form>

@@ -1,5 +1,5 @@
-<form ngClass="form-container" [formGroup]="editObjectFormGroup">
-  <h2>{{selectedObject.objectTitle}} Object</h2>
+<form ngClass="form-container" [formGroup]="addObjectFormGroup">
+  <h2>Add New Object</h2>
   <div ngClass="form-group">
     <input
       type="text"
@@ -25,14 +25,7 @@
   <br />
   <app-btn
     (btnClick)="onSubmit()"
-    text="Update Inventory Object"
-    [isDisabled]="false"
-  />
-  <br/>
-  <app-btn
-    ngClass="delete-btn"
-    (btnClick)="deleteInventoryObjectHandler()"
-    text="Delete Inventory Object"
+    text="Add New Inventory Object"
     [isDisabled]="false"
   />
 </form>

@@ -1,0 +1,44 @@
+<form ngClass="form-container" [formGroup]="jobFormGroup">
+  <h2>Creating job for (sector)</h2>
+  <div ngClass="form-group">
+    <input
+      type="text"
+      required="required"
+      placeholder="Job Title"
+      [formControlName]="'jobTitle'"
+    />
+    <label ngClass="control-label" for="input">Job Title</label>
+    <i ngClass="bar"></i>
+    <!-- <i ngClass="input-error"></i> -->
+  </div>
+  <div ngClass="form-group">
+    <input
+      type="text"
+      required="required"
+      placeholder="Search Object Form Input"
+      [formControlName]="'jobType'"
+      (click)="inputDropDownActive()"
+      (blur)="dropDownNonActive()"
+    />
+    <label ngClass="control-label" for="input">Search Object Form Input</label>
+    <i ngClass="bar"></i>
+    <!-- <i ngClass="input-error"></i> -->
+  </div>
+  <div *ngIf="inputShowObjectDropdown" ngClass="dropdown-list">
+    <ng-template ngFor let-jobType [ngForOf]="jobTypes">
+      <p
+        (click)="SelectJobTypeHandler(jobType)"
+        ngClass="object-list-item"
+      >
+        {{ jobType }}
+      </p>
+    </ng-template>
+  </div>
+  <!-- <p>job type</p>
+    <p>delivery</p>
+    <p>production</p>
+    <p>export</p>
+    <p>stock update</p>
+    <p>Production Line</p>
+    <p>Production Line Amount</p> -->
+</form>
