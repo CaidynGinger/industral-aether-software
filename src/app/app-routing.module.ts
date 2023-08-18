@@ -8,6 +8,7 @@ import { SectorComponent } from './pages/sector/sector.component';
 import { InventoryObjectsComponent } from './pages/inventory-objects/inventory-objects.component';
 import { ObjectComponent } from './pages/inventory-objects/object/object.component';
 import { ProductionLinesComponent } from './pages/production-lines/production-lines.component';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   // { path: '',   redirectTo: '', pathMatch: 'full' },
@@ -29,6 +30,10 @@ const routes: Routes = [
       { path: 'production-lines', component: ProductionLinesComponent },
     ],
   },
+  {
+    path: 'login',
+    component: LoginComponent,
+  }
 ];
 
 @NgModule({

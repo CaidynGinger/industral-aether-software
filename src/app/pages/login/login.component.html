@@ -1,0 +1,31 @@
+<section ngClass="background">
+  <!-- <div class="mask1">
+    <img src="../../../assets/images/login_background.png"/>
+  </div> -->
+  <form autocomplete="off" ngClass="login-form" [formGroup]="loginFormGroup">
+    <div ngClass="login-form-spacer">
+      <img src="../../../assets/images/logo.png" />
+      <div ngClass="inputs-container">
+        <h1>Login To Industrial Aether</h1>
+        <div ngClass="form-group">
+          <input type="email" required="required" [formControlName]="'email'" />
+          <label ngClass="control-label" for="input">Email</label>
+          <i ngClass="bar"></i>
+        </div>
+        <br />
+        <div ngClass="form-group">
+          <input
+            type="password"
+            required="required"
+            [formControlName]="'password'"
+          />
+          <label ngClass="control-label" for="input">Password</label>
+          <i ngClass="bar"></i>
+        </div>
+        <br />
+        <app-btn (btnClick)="onSubmit()" text="Login" [isDisabled]="false" />
+      </div>
+      
+    </div>
+  </form>
+</section>

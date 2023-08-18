@@ -22,6 +22,7 @@ import { AddProductionLineComponent } from './pages/production-lines/add-product
 import { CreateJobComponent } from './pages/sector/create-job/create-job.component';
 import { DeliveryComponent } from './pages/sector/create-job/delivery/delivery.component';
 import { ProductionLineComponent } from './pages/production-lines/production-line/production-line.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ProductionLineComponent } from './pages/production-lines/production-lin
     CreateJobComponent,
     DeliveryComponent,
     ProductionLineComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

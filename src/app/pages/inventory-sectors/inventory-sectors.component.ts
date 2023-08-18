@@ -18,6 +18,13 @@ export class InventorySectorsComponent {
   public sectorList: Sector[] = [];
 
   ngOnInit() {
+    this.getSectorList()
+  }
+
+  getSectorList() {
+    this.modalShow = false;
+    this.sectorListOriginal = [];
+    this.sectorList = [];
     this.sectorService.getSectorList().subscribe((sectorList) => {
       sectorList.forEach((sector) => {
         this.sectorListOriginal.push(sector);
@@ -39,6 +46,14 @@ export class InventorySectorsComponent {
   }
   routeHandler(id: string) {
     this._router.navigate(['/sector', id]);
+  }
+
+  onDeleteItem(event: Event , id: string) {
+    event.stopPropagation();
+    this.sectorService.deleteSector(id).subscribe((data) => {
+      console.log('Success!', data);
+      this.getSectorList();
+    });
   }
 }
 

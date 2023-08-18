@@ -17,23 +17,48 @@
       required="required"
       placeholder="Search Object Form Input"
       [formControlName]="'jobType'"
-      (click)="inputDropDownActive()"
-      (blur)="dropDownNonActive()"
+      (click)="inputDropDownActive(inputShowJobTypesDropdown)"
+      (blur)="dropDownNonActive(inputShowJobTypesDropdown)"
     />
     <label ngClass="control-label" for="input">Search Object Form Input</label>
     <i ngClass="bar"></i>
     <!-- <i ngClass="input-error"></i> -->
   </div>
-  <div *ngIf="inputShowObjectDropdown" ngClass="dropdown-list">
+  <div *ngIf="inputShowJobTypesDropdown.show" ngClass="dropdown-list">
     <ng-template ngFor let-jobType [ngForOf]="jobTypes">
-      <p
-        (click)="SelectJobTypeHandler(jobType)"
-        ngClass="object-list-item"
-      >
+      <p (click)="SelectJobTypeHandler(jobType)" ngClass="object-list-item">
         {{ jobType }}
       </p>
     </ng-template>
   </div>
+  <div *ngIf="selectedJobType === 'Import'">
+    <app-delivery />
+  </div>
+  <div ngClass="form-group">
+    <input
+      type="text"
+      required="required"
+      placeholder="Who's Job"
+      [formControlName]="'ForUser'"
+      (click)="showUsersDropDown()"
+      (keyup)="onSearchUserList()"
+      (blur)="HideUsersDropDown()"
+    />
+    <label ngClass="control-label" for="input">Who's Job</label>
+    <i ngClass="bar"></i>
+    <!-- <i ngClass="input-error"></i> -->
+  </div>
+  <div *ngIf="inputShowUsersDropdown" ngClass="dropdown-list">
+    <ng-template ngFor let-user [ngForOf]="UserList">
+        <p (click)="SelectUserInputsHandler(user._id)" ngClass="object-list-item">{{user.username}}</p>
+    </ng-template>
+  </div>
+  <br />
+    <app-btn
+      (btnClick)="onSubmit()"
+      text="Create Job"
+      [isDisabled]="false"
+    />
   <!-- <p>job type</p>
     <p>delivery</p>
     <p>production</p>

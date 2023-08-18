@@ -21,18 +21,18 @@
 </div>
 <div ngClass="job-container">
   <div ngClass="content-container">
-    <p>search job</p>
+    <!-- <p>search job</p> -->
 
     <table ngClass="sector-table">
       <tr>
         <th>Job Title</th>
         <th>Job Type</th>
-        <!-- <th>Issuer</th> -->
+        <th>Issuer</th>
         <th>For</th>
-        <th>Created</th>
-        <th>Due</th>
+        <!-- <th>Created</th>
+        <th>Due</th> -->
         <th>Status</th>
-        <th>Completed Date</th>
+        <!-- <th>Completed Date</th> -->
         <!-- <th>Note</th> -->
         <th></th>
       </tr>
@@ -45,23 +45,14 @@
             <td>
               <p>{{ job.jobName }}</p>
             </td>
-            <!-- <td>
+            <td>
               <p>{{ job.issuer }}</p>
-            </td> -->
+            </td>
             <td>
               <p>{{ job.for }}</p>
             </td>
             <td>
-              <p>{{ job.created }}</p>
-            </td>
-            <td>
-              <p>{{ job.due }}</p>
-            </td>
-            <td>
               <p>{{ job.status }}</p>
-            </td>
-            <td>
-              <p>{{ job.complectedDate }}</p>
             </td>
             <td>
               <a ngClass="manage-btn" routerLink="inventory-sectors"

@@ -33,4 +33,10 @@ export class SectorsService {
     return this.http.get<Sector[]>('http://localhost:3000/sectors');
   }
 
+  deleteSector(sectorId: string): Observable<Sector> {
+    return this.http.delete<Sector>(
+      'http://localhost:3000/sectors/' + sectorId
+    );
+  }
+
 }
