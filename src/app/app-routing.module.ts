@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ContainerComponent } from './container/container.component';
 import { InventorySectorsComponent } from './pages/inventory-sectors/inventory-sectors.component';
-import { AddSectorComponent } from './pages/add-sector/add-sector.component';
+import { AddSectorComponent } from './pages/inventory-sectors/add-sector/add-sector.component';
 import { SectorComponent } from './pages/sector/sector.component';
 import { InventoryObjectsComponent } from './pages/inventory-objects/inventory-objects.component';
 import { ObjectComponent } from './pages/inventory-objects/object/object.component';

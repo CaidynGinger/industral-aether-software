@@ -7,10 +7,18 @@
   <app-create-job></app-create-job>
 </div>
 
+<div ngClass="form-container" [class.form-container-show]="modalShow">
+  <app-create-job></app-create-job>
+</div>
+
 <div ngClass="main-nav-container">
   <nav ngClass="main-nav">
-    <h4>Kol 67 storage</h4>
-    <h3>(34,56,31)</h3>
+    <h4>{{ SectorDetails?.title }}</h4>
+    <h3>
+      X:{{ SectorDetails?.locationX }}, Y:{{ SectorDetails?.locationY }}, Z:{{
+        SectorDetails?.locationZ
+      }}
+    </h3>
     <app-btn
       ngClass="btn"
       (btnClick)="createJob()"
@@ -20,13 +28,16 @@
   </nav>
 </div>
 <div ngClass="job-container">
+  <h1 ngClass="table-heads">Incomplete jobs</h1>
+
   <div ngClass="content-container">
     <!-- <p>search job</p> -->
-
     <table ngClass="sector-table">
       <tr>
         <th>Job Title</th>
         <th>Job Type</th>
+        <th>Material</th>
+        <th>Amount</th>
         <th>Issuer</th>
         <th>For</th>
         <!-- <th>Created</th>
@@ -35,29 +46,155 @@
         <!-- <th>Completed Date</th> -->
         <!-- <th>Note</th> -->
         <th></th>
+        <th></th>
       </tr>
       <tbody>
-        <ng-template ngFor let-job [ngForOf]="jobList">
+        <ng-template ngFor let-job [ngForOf]="jobListIncomplete">
           <tr>
             <td>
-              <p>{{ job.jobName }}</p>
+              <p>{{ job.jobTitle }}</p>
             </td>
             <td>
-              <p>{{ job.jobName }}</p>
+              <p>{{ job.jobType }}</p>
             </td>
             <td>
-              <p>{{ job.issuer }}</p>
+              {{ job.jobDetails.objectTitle }}
             </td>
             <td>
-              <p>{{ job.for }}</p>
+              {{ job.jobDetails.objectAmount }}
+            </td>
+            <td>
+              <!-- filter for issure from the userlist full -->
+              <p>{{ job.issuer.username }}</p>
+            </td>
+            <td>
+              <p>{{ job.for.username }}</p>
             </td>
             <td>
               <p>{{ job.status }}</p>
             </td>
             <td>
-              <a ngClass="manage-btn" routerLink="inventory-sectors"
-                >Manage Job</a
+              <a ngClass="manage-btn" (click)="onCompleteJob(job._id, job.sectorId)"
+                >Complete Job</a
               >
+            </td>
+            <td>
+              <a ngClass="manage-btn" (click)="onDeleteJob(job._id)"
+                >Delete Job</a
+              >
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+    <!-- <div>Jobs</div>
+    
+      <div>Employee list</div>
+    
+      inventory brake down
+    
+      <p>sector details</p>
+      <p>Sector jobs</p>
+      <p>Sector workers</p>
+      <p>sector Inventory</p> -->
+  </div>
+  <h1 ngClass="table-heads">Complete jobs</h1>
+
+  <div ngClass="content-container">
+    <!-- <p>search job</p> -->
+    <table ngClass="sector-table">
+      <tr>
+        <th>Job Title</th>
+        <th>Job Type</th>
+        <th>Material</th>
+        <th>Amount</th>
+        <th>Issuer</th>
+        <th>For</th>
+        <!-- <th>Created</th>
+        <th>Due</th> -->
+        <th>Status</th>
+        <!-- <th>Completed Date</th> -->
+        <!-- <th>Note</th> -->
+        <!-- <th></th> -->
+        <th></th>
+      </tr>
+      <tbody>
+        <ng-template ngFor let-job [ngForOf]="jobListCompleted">
+          <tr>
+            <td>
+              <p>{{ job.jobTitle }}</p>
+            </td>
+            <td>
+              <p>{{ job.jobType }}</p>
+            </td>
+            <td>
+              {{ job.jobDetails.objectTitle }}
+            </td>
+            <td>
+              {{ job.jobDetails.objectAmount }}
+            </td>
+            <td>
+              <!-- filter for issure from the userlist full -->
+              <p>{{ job.issuer.username }}</p>
+            </td>
+            <td>
+              <p>{{ job.for.username }}</p>
+            </td>
+            <td>
+              <p>{{ job.status }}</p>
+            </td>
+            <!-- <td>
+              <a ngClass="manage-btn" (click)="onCompleteJob(job._id, job.sectorId)"
+                >Complete Job</a
+              >
+            </td> -->
+            <td>
+              <a ngClass="manage-btn" (click)="onDeleteJob(job._id)"
+                >Delete Job</a
+              >
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+    <!-- <div>Jobs</div>
+    
+      <div>Employee list</div>
+    
+      inventory brake down
+    
+      <p>sector details</p>
+      <p>Sector jobs</p>
+      <p>Sector workers</p>
+      <p>sector Inventory</p> -->
+  </div>
+</div>
+
+<div ngClass="job-container">
+  <h1 ngClass="table-heads">Full Inventory</h1>
+
+  <div ngClass="content-container">
+    <!-- <p>search job</p> -->
+    <table ngClass="sector-table">
+      <tr>
+        <th>Inventory object</th>
+        <th>Units</th>
+        <th>Amount</th>
+      </tr>
+      <tbody>
+        <ng-template ngFor let-object [ngForOf]="sectorInventory">
+          <tr>
+            <td>
+              <p>{{ toCapitalize(object.objectTitle) }}</p>
+            </td>
+            <td>
+              <p>{{ object.unit }}</p>
+            </td>
+            <td>
+              <p>
+                {{ object.amount }} {{ object.unit
+                }}{{ pluralChecker(object.amount) }}
+              </p>
             </td>
           </tr>
         </ng-template>

@@ -12,6 +12,11 @@
     z-index: 0;
 }
 
+.table-heads{
+    font-weight: 300;
+    margin: 54px 0 20px 0;
+}
+
 .main-nav{
     margin-left: 50px;
     display: flex;
@@ -46,11 +51,14 @@
 }
 
 .content-container{
-    margin-top: 54px;
-    width: 70%;
+    margin-top: 0px;
+    width: 100%;
 
-    max-height: calc(100vh - 144px);
+    max-height: calc(70vh - 144px);
     overflow: auto;
+
+   
+
     &::-webkit-scrollbar {
         width: 5px;
     }

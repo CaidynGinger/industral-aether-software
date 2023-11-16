@@ -10,7 +10,6 @@ export class SectorsService {
   constructor(private http: HttpClient) {}
 
   createSector(
-    
     sectorDetails: Partial<{
       title: string;
       locationX: string;
@@ -18,25 +17,28 @@ export class SectorsService {
       locationZ: string;
     }>
   ) {
-    console.log("dawdoawd");
+    console.log('dawdoawd');
 
     return this.http.post<Sector>(
-      'http://localhost:3000/sectors',
+      'http://localhost:4444/sectors',
       sectorDetails
     );
   }
 
-  getOneSector(id: string) : Observable<Sector> {
-    return this.http.get<Sector>('http://localhost:3000/sectors/'+ id);
+  getOneSector(id: string): Observable<Sector> {
+    return this.http.get<Sector>('http://localhost:4444/sectors/' + id);
   }
   getSectorList(): Observable<Sector[]> {
-    return this.http.get<Sector[]>('http://localhost:3000/sectors');
+    return this.http.get<Sector[]>('http://localhost:4444/sectors');
   }
 
   deleteSector(sectorId: string): Observable<Sector> {
     return this.http.delete<Sector>(
-      'http://localhost:3000/sectors/' + sectorId
+      'http://localhost:4444/sectors/' + sectorId
     );
   }
 
+  getInventory(sectorId: string): Observable<any> {
+    return this.http.get('http://localhost:4444/jobs/sector/inventory/' + sectorId);
+  }
 }

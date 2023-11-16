@@ -1,5 +1,5 @@
 <form ngClass="form-container" [formGroup]="jobFormGroup">
-  <h2>Creating job for (sector)</h2>
+  <h2>Creating job</h2>
   <div ngClass="form-group">
     <input
       type="text"
@@ -17,29 +17,41 @@
       required="required"
       placeholder="Search Object Form Input"
       [formControlName]="'jobType'"
-      (click)="inputDropDownActive(inputShowJobTypesDropdown)"
-      (blur)="dropDownNonActive(inputShowJobTypesDropdown)"
+      (click)="showJobTypeDropdown()"
+      (blur)="hideJobTypeDropdown()"
     />
     <label ngClass="control-label" for="input">Search Object Form Input</label>
     <i ngClass="bar"></i>
     <!-- <i ngClass="input-error"></i> -->
   </div>
-  <div *ngIf="inputShowJobTypesDropdown.show" ngClass="dropdown-list">
+  <div *ngIf="jobTypeDropdown" ngClass="dropdown-list">
     <ng-template ngFor let-jobType [ngForOf]="jobTypes">
       <p (click)="SelectJobTypeHandler(jobType)" ngClass="object-list-item">
         {{ jobType }}
       </p>
     </ng-template>
   </div>
+  <div *ngIf="selectedJobType === ''">
+    <p></p>
+  </div>
   <div *ngIf="selectedJobType === 'Import'">
-    <app-delivery />
+    <app-delivery [jobDetailsFormGroup]="jobFormGroup" />
+  </div>
+  <div *ngIf="selectedJobType === 'Export'">
+    <app-export [jobDetailsFormGroup]="jobFormGroup" />
+  </div>
+  <div *ngIf="selectedJobType === 'Stock Update'">
+    <app-stock-update [jobDetailsFormGroup]="jobFormGroup" />
+  </div>
+  <div *ngIf="selectedJobType === 'Production'">
+    <app-production [jobDetailsFormGroup]="jobFormGroup" />
   </div>
   <div ngClass="form-group">
     <input
       type="text"
       required="required"
       placeholder="Who's Job"
-      [formControlName]="'ForUser'"
+      [formControlName]="'for'"
       (click)="showUsersDropDown()"
       (keyup)="onSearchUserList()"
       (blur)="HideUsersDropDown()"

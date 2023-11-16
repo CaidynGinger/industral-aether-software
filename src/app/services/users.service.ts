@@ -11,6 +11,10 @@ export class UsersService {
   constructor(private http: HttpClient) {}
 
   getUserList(): Observable<User[]> {
-    return this.http.get<User[]>('http://localhost:3000/users');
+    return this.http.get<User[]>('http://localhost:4444/users');
+  }
+
+  getUser(id: string): Observable<User> {
+    return this.http.get<User>("http://localhost:4444/users/" + id)
   }
 }

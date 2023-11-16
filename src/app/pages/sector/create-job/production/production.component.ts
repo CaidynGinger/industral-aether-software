@@ -1,26 +1,22 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  SimpleChange,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ObjectItem } from 'src/app/interfaces/object.interface';
+import { ProductionLine } from 'src/app/interfaces/productionLine.interface';
 import { ObjectsService } from 'src/app/services/objects.service';
+import { ProductionLinesService } from 'src/app/services/production-lines.service';
 import { TextService } from 'src/app/services/text.service';
 
 @Component({
-  selector: 'app-delivery',
-  templateUrl: './delivery.component.html',
-  styleUrls: ['./delivery.component.scss'],
+  selector: 'app-production',
+  templateUrl: './production.component.html',
+  styleUrls: ['./production.component.scss']
 })
-export class DeliveryComponent {
+export class ProductionComponent {
   constructor(
     private readonly textService: TextService,
     private readonly objectsService: ObjectsService,
+    private readonly productionLinesService: ProductionLinesService,
     private readonly _router: Router
   ) {
     this.addObjectFormGroup.get('input')?.valueChanges.subscribe((newValue) => {
@@ -29,6 +25,7 @@ export class DeliveryComponent {
         jobDetails: {
           ...this.jobDetailsFormGroup?.value.jobDetails,
           objectTitle: newValue,
+          selectedItemId: this.selectedItemId
         },
       });
     });
@@ -41,7 +38,7 @@ export class DeliveryComponent {
           jobDetails: {
             ...this.jobDetailsFormGroup?.value.jobDetails,
             objectAmount: newValue,
-            selectedItemId: this.selectedItemId
+
           },
         });
       });
@@ -50,16 +47,16 @@ export class DeliveryComponent {
   @Input() jobDetailsFormGroup: FormGroup | undefined;
 
   ngOnInit() {
-    this.objectsService.getObjectList().subscribe((ObjectList) => {
-      ObjectList.forEach((ObjectItem) => {
+    this.productionLinesService.getProductionLineList().subscribe((ProductionList) => {
+      ProductionList.forEach((ObjectItem) => {
         this.inventoryObjectsOriginal.push(ObjectItem);
         this.inventoryObjectsList.push(ObjectItem);
       });
     });
   }
 
-  public inventoryObjectsOriginal: ObjectItem[] = [];
-  public inventoryObjectsList: ObjectItem[] = [];
+  public inventoryObjectsOriginal: ProductionLine[] = [];
+  public inventoryObjectsList: ProductionLine[] = [];
   public inputShowObjectDropdown: Boolean = false;
   public objectUnit: string = '';
   public selectedItemId: string = '';
@@ -75,7 +72,7 @@ export class DeliveryComponent {
 
   public onSearchObjectList() {
     this.inventoryObjectsList = this.inventoryObjectsOriginal.filter((object) =>
-      object.objectTitle
+      object.productionLineTitle
         .toLowerCase()
         .includes(this.addObjectFormGroup.controls.input.value.toLowerCase())
     );
@@ -87,13 +84,10 @@ export class DeliveryComponent {
     const objectSelected = this.inventoryObjectsOriginal.find(
       (object) => object._id === objectId
     );
-    if (objectSelected) {
-      this.objectUnit = objectSelected.unit;
-    }
 
     // console.log(objectSelected?.objectTitle);
     this.addObjectFormGroup.setValue({
-      input: objectSelected?.objectTitle,
+      input: objectSelected?.productionLineTitle,
       objectAmount: this.addObjectFormGroup.value.objectAmount,
     });
   }

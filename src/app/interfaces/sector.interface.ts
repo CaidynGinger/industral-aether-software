@@ -7,4 +7,5 @@ export interface Sector {
     employees: string;
     status: boolean;
     currentJobs: string;
+    jobs: string;
 }

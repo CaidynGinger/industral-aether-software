@@ -1,23 +1,15 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  SimpleChange,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ObjectItem } from 'src/app/interfaces/object.interface';
 import { ObjectsService } from 'src/app/services/objects.service';
 import { TextService } from 'src/app/services/text.service';
-
 @Component({
-  selector: 'app-delivery',
-  templateUrl: './delivery.component.html',
-  styleUrls: ['./delivery.component.scss'],
+  selector: 'app-stock-update',
+  templateUrl: './stock-update.component.html',
+  styleUrls: ['./stock-update.component.scss']
 })
-export class DeliveryComponent {
+export class StockUpdateComponent {
   constructor(
     private readonly textService: TextService,
     private readonly objectsService: ObjectsService,
@@ -29,6 +21,7 @@ export class DeliveryComponent {
         jobDetails: {
           ...this.jobDetailsFormGroup?.value.jobDetails,
           objectTitle: newValue,
+          selectedItemId: this.selectedItemId
         },
       });
     });
@@ -41,7 +34,6 @@ export class DeliveryComponent {
           jobDetails: {
             ...this.jobDetailsFormGroup?.value.jobDetails,
             objectAmount: newValue,
-            selectedItemId: this.selectedItemId
           },
         });
       });

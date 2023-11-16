@@ -1,0 +1,51 @@
+<!-- https://codepen.io/alextoea/pen/apgzeV -->
+
+<form ngClass="form-container" [formGroup]="addSectorFormGroup">
+    <h2>Add New Sector</h2>
+    <div ngClass="form-group">
+      <input
+        type="text"
+        required="required"
+        placeholder="Sector Name"
+        [formControlName]="'title'"
+      />
+      <label ngClass="control-label" for="input">Name</label>
+      <i ngClass="bar"></i>
+      <!-- <i ngClass="input-error"></i> -->
+    </div>
+    <div ngClass="location-container">
+      <div ngClass="form-group">
+        <input
+          type="text"
+          required="required"
+          [formControlName]="'locationX'"
+          maxlength="4"
+        />
+        <label ngClass="control-label" for="input">X coordinate</label>
+        <i ngClass="bar"></i>
+      </div>
+      <div ngClass="form-group">
+        <input
+          type="text"
+          required="required"
+          [formControlName]="'locationY'"
+          [maxlength]="4"
+        />
+        <label ngClass="control-label" for="input">Y coordinate</label>
+        <i ngClass="bar"></i>
+      </div>
+      <div ngClass="form-group">
+        <input
+          type="text"
+          required="required"
+          [formControlName]="'locationZ'"
+          [maxlength]="4"
+        />
+        <label ngClass="control-label" for="input">Z coordinate</label>
+        <i ngClass="bar"></i>
+      </div>
+    </div>
+    <br />
+    <app-btn (btnClick)="onSubmit()" text="Edit Sector" [isDisabled]="false" />
+  </form>
+  

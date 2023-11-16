@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Sector } from 'src/app/interfaces/sector.interface';
+import { JobsService } from 'src/app/services/jobs.service';
 import { SectorsService } from 'src/app/services/sectors.service';
 
 @Component({
@@ -11,38 +12,51 @@ import { SectorsService } from 'src/app/services/sectors.service';
 export class InventorySectorsComponent {
   constructor(
     private _router: Router,
-    private readonly sectorService: SectorsService
+    private readonly sectorService: SectorsService,
+    private readonly jobsService: JobsService,
   ) {}
 
   public sectorListOriginal: Sector[] = [];
   public sectorList: Sector[] = [];
 
+  editModalShow: boolean = false;
+  addModalShow: boolean = false;
+  modalModalBackground: boolean = false;
+
+  modalGradientCSS: string[] = ['modal-background'];
+
+  public selectedEditSectorId = '';
+
+  public TotalJobs: number = 0;
+
   ngOnInit() {
     this.getSectorList()
+    // add all jobs together 
+    
   }
 
   getSectorList() {
-    this.modalShow = false;
     this.sectorListOriginal = [];
     this.sectorList = [];
     this.sectorService.getSectorList().subscribe((sectorList) => {
       sectorList.forEach((sector) => {
         this.sectorListOriginal.push(sector);
         this.sectorList.push(sector);
+        this.TotalJobs += sector.jobs.length;
       });
-      console.log(this.sectorList);
     });
   }
 
-  modalShow: boolean = false;
-
-  modalGradientCSS: string[] = ['modal-background'];
+  
 
   closeFormHandler() {
-    this.modalShow = false;
+    this.addModalShow = false;
+    this.editModalShow = false
+    this.modalModalBackground = false;
   }
-  addSectorHandler() {
-    this.modalShow = true;
+  addNewSectorModalHandler() {
+    this.addModalShow = true;
+    this.modalModalBackground = true;
   }
   routeHandler(id: string) {
     this._router.navigate(['/sector', id]);
@@ -55,15 +69,12 @@ export class InventorySectorsComponent {
       this.getSectorList();
     });
   }
-}
 
-// Alnotov
-// Koseuliv
-// Galnars
-// Ugnagua
-// Liter
-// Cuanus
-// Cizinerth
-// Gusinus
-// Chypso 9U75
-// Corix 0Z5P
+  onEditItem(event: Event , id: string) {
+    event.stopPropagation();
+    // this._router.navigate(['/sector', id, 'edit']);
+    this.selectedEditSectorId = id
+    this.editModalShow = true;
+    this.modalModalBackground = true;
+  }
+}

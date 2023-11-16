@@ -10,7 +10,7 @@ import { MainNavComponent } from './main-nav/main-nav.component';
 import { InventorySectorsComponent } from './pages/inventory-sectors/inventory-sectors.component';
 import { TableComponent } from './components/table/table.component';
 import { BtnComponent } from './components/UI/btn/btn.component';
-import { AddSectorComponent } from './pages/add-sector/add-sector.component';
+import { AddSectorComponent } from './pages/inventory-sectors/add-sector/add-sector.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SectorComponent } from './pages/sector/sector.component';
@@ -23,6 +23,10 @@ import { CreateJobComponent } from './pages/sector/create-job/create-job.compone
 import { DeliveryComponent } from './pages/sector/create-job/delivery/delivery.component';
 import { ProductionLineComponent } from './pages/production-lines/production-line/production-line.component';
 import { LoginComponent } from './pages/login/login.component';
+import { EditSectorComponent } from './pages/inventory-sectors/edit-sector/edit-sector.component';
+import { ExportComponent } from './pages/sector/create-job/export/export.component';
+import { StockUpdateComponent } from './pages/sector/create-job/stock-update/stock-update.component';
+import { ProductionComponent } from './pages/sector/create-job/production/production.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +49,10 @@ import { LoginComponent } from './pages/login/login.component';
     DeliveryComponent,
     ProductionLineComponent,
     LoginComponent,
+    EditSectorComponent,
+    ExportComponent,
+    StockUpdateComponent,
+    ProductionComponent,
   ],
   imports: [
     BrowserModule,

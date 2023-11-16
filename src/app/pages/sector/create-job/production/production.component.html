@@ -1,0 +1,48 @@
+<div>
+    <br />
+    <p>This job type is here for production lines.</p>
+    <br />
+    <form [formGroup]="addObjectFormGroup" ngClass="form-container">
+      <div ngClass="object-item-name">
+          <div ngClass="form-group">
+              <input
+                type="text"
+                required="required"
+                placeholder="Production line to be used"
+                [formControlName]="'input'"
+                (click)="inputDropDownActive()"
+                (keyup)="onSearchObjectList()"
+                (blur)="dropDownNonActive()"
+              />
+              <label ngClass="control-label" for="input">Production line to be used</label>
+              <i ngClass="bar"></i>
+              <!-- <i ngClass="input-error"></i> -->
+            </div>
+            <div *ngIf="inputShowObjectDropdown" ngClass="dropdown-list">
+              <ng-template ngFor let-objectItem [ngForOf]="inventoryObjectsList">
+                <p
+                  (click)="SelectObjectInputsHandler(objectItem._id)"
+                  ngClass="object-list-item"
+                >
+                  {{ objectItem.productionLineTitle }}
+                </p>
+              </ng-template>
+            </div>
+      </div>
+      <p ngClass="object-item-unit">-</p>
+      <div  ngClass="object-item-amount">
+          <div ngClass="form-group">
+              <input
+                type="number"
+                required="required"
+                placeholder="Amount to be produced"
+                [formControlName]="'objectAmount'"
+              />
+              <label ngClass="control-label" for="input">Amount to be produced</label>
+              <i ngClass="bar"></i>
+              <!-- <i ngClass="input-error"></i> -->
+            </div>
+      </div>
+      
+    </form>
+  </div>

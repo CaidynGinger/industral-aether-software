@@ -13,10 +13,10 @@ export class AddSectorComponent {
     private readonly router: Router) {}
 
   addSectorFormGroup = new FormGroup({
-    title: new FormControl<any>('Corix 0Z5P'),
-    locationX: new FormControl<any>('21'),
-    locationY: new FormControl<any>('44'),
-    locationZ: new FormControl<any>('55'),
+    title: new FormControl<any>(''),
+    locationX: new FormControl<any>(''),
+    locationY: new FormControl<any>(''),
+    locationZ: new FormControl<any>(''),
   });
 
   // function to take the form data and send it to the service

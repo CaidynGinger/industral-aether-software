@@ -27,7 +27,7 @@ export class LoginComponent {
       (data: object) => {
         console.log('Success!', data);
         localStorage.setItem('user', JSON.stringify(data));
-        this.router.navigate(['/']);
+        this.router.navigate(['/inventory-sectors']);
       }
     );
     // return false;
